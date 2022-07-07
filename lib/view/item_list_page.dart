@@ -7,12 +7,17 @@ import 'package:intl/intl.dart';
 
 import '../model/item_model.dart';
 
+// riverpodとhooksの機能を合わせて使う場合、HookConsumerWidgetを使用
+// http://dav.blog.jp/archives/10376012.html
+// https://crieit.net/posts/Riverpod-v1-Flutter-Hooks
 class ItemListPage extends HookConsumerWidget {
+  // コンストラクタ
   const ItemListPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // state(状態)
+    // ref.watchでproviderを読み取る
     final itemList = ref.watch(itemListProvider);
     // provider(状態の操作)
     final itemListNotifier = ref.watch(itemListProvider.notifier);
@@ -118,6 +123,7 @@ class AddItemDialog extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // 初期値にタイトルを入れておく
+    // HookConsumerWidgetを継承しているので、hooksが使える
     final textController = useTextEditingController(text: item.title);
     // provider(状態の操作)
     final itemListNotifier = ref.watch(itemListProvider.notifier);

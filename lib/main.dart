@@ -4,6 +4,7 @@ import 'package:flutter_crud_sample/view/item_list_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 void main() async {
+  // Firebase初期接続
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const ProviderScope(child: MyApp()));
